@@ -1,3 +1,3 @@
 # MoodSync
 
-tes deploy
+tes deploy.
