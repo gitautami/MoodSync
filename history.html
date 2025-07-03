@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoodSync - Riwayat Suasana Hati</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        .mood-card {
+            transition: transform 0.3s ease;
+        }
+        .mood-card:hover {
+            transform: translateY(-5px);
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-pink-50 min-h-screen font-['Inter'] flex flex-col">
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <h1 class="text-2xl font-bold text-pink-500 animate__animated animate__bounceIn">MoodSync</h1>
+                <div class="flex gap-4">
+                    <button id="guideBtn" class="px-4 py-2 text-pink-600 hover:bg-pink-50 rounded-md transition-colors flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        Panduan
+                    </button>
+                    <a href="index.html" class="px-4 py-2 text-pink-600 hover:bg-pink-50 rounded-md transition-colors">Beranda</a>
+                    <button id="notificationBtn" class="p-2 text-pink-600 hover:text-pink-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-4 py-8 flex-grow">
+        <h2 class="text-2xl font-bold text-pink-600 mb-6 animate__animated animate__fadeIn">Riwayat Suasana Hati</h2>
+        <div id="historyContainer" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- History items will be inserted here -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white shadow-sm w-full sticky bottom-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4">
+            <div class="text-center">
+                <p class="text-pink-500 text-sm">
+                    Created with ❤️ by 
+                    <a href="https://github.com/ResqiAuliaGitaUtami" 
+                       class="font-semibold hover:text-pink-600 transition-colors"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        @ResqiAuliaGitaUtami
+                    </a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="js/history.js"></script>
+</body>
+</html>

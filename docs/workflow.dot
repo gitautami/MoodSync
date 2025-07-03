@@ -1,0 +1,78 @@
+digraph MoodSync {
+    rankdir=LR;
+    node [shape=box, style=rounded, fontname="Inter"];
+
+    // UI Layer
+    index_html [label="index.html"];
+    history_html [label="history.html"];
+    moodChart [label="Chart.js\n(Visualisasi)"];
+    sweetalert [label="SweetAlert2\n(Popup)"];
+
+    // Main JS
+    main_js [label="js/main.js\n(Entry Point)"];
+    history_js [label="js/history.js\n(Riwayat)"];
+
+    // Models & Services
+    models_MoodEntry [label="models/MoodEntry.js"];
+    models_MoodTracker [label="models/MoodTracker.js"];
+    models_SessionManager [label="models/SessionManager.js"];
+    models_NotificationService [label="models/NotificationService.js"];
+    models_ReportGenerator [label="models/ReportGenerator.js"];
+    services_NotificationService [label="services/NotificationService.js"];
+    services_ReportGenerator [label="services/ReportGenerator.js"];
+    services_MoodTracker [label="services/MoodTracker.js"];
+    services_SessionManager [label="services/SessionManager.js"];
+    services_EmotionAnalyzer [label="services/EmotionAnalyzer.js"];
+    face_detection [label="face-detection.js"];
+
+    // Storage
+    localStorage [label="localStorage", shape=cylinder, style=filled, fillcolor="#f9e2f3"];
+
+    // UI to Main
+    index_html -> main_js;
+    history_html -> history_js;
+
+    // Main to Models
+    main_js -> models_SessionManager;
+    main_js -> models_MoodTracker;
+    main_js -> models_NotificationService;
+    main_js -> models_ReportGenerator;
+
+    // Models to Services (if used)
+    main_js -> services_NotificationService [style=dashed];
+    main_js -> services_ReportGenerator [style=dashed];
+    main_js -> services_MoodTracker [style=dashed];
+    main_js -> services_SessionManager [style=dashed];
+    main_js -> services_EmotionAnalyzer [style=dashed];
+    main_js -> face_detection [style=dashed];
+
+    // MoodTracker logic
+    models_MoodTracker -> models_MoodEntry;
+    models_MoodTracker -> models_SessionManager;
+    models_MoodTracker -> localStorage;
+
+    // SessionManager logic
+    models_SessionManager -> localStorage;
+
+    // Notification logic
+    models_NotificationService -> localStorage;
+
+    // Report logic
+    models_ReportGenerator -> models_MoodEntry;
+
+    // History
+    history_js -> localStorage;
+    history_js -> services_NotificationService;
+
+    // Visualisasi
+    main_js -> moodChart;
+    main_js -> sweetalert;
+    history_js -> sweetalert;
+
+    // Face detection (opsional)
+    index_html -> face_detection [style=dotted];
+
+    // Laporan mingguan
+    main_js -> models_ReportGenerator;
+    models_ReportGenerator -> models_MoodEntry;
+}
